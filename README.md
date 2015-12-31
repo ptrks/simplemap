@@ -48,7 +48,7 @@ Next,  initialize your map object: `simplemap.Map()`
 * `title`  - The title of the HTML map webpage
 * `center` - `list` object containing the latitude and longitude of where the map should be centered
 * `zoom` - Zoom level of the map, defaults to 11 - Optional
-* `markers` -  [Optional] `list` of markers, where a marker is a list containing: optional hovertext, lat and lon
+* `markers` - `list` of markers, where a marker is a `list`: optional hovertext, lat and lon - Optional
 * `html_template` - HTML template used to generate a map. Currently the default value of `basic.html` is the only option - Optional
 * `config_file` - JSON file containing the google maps `api_key`, defaults to `config.json` - Optional
 
