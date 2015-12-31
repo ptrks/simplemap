@@ -42,12 +42,15 @@ First, import the simplemap library
 import simplemap
 ```
 
-Next,  initialize your map object: `simplemap.Map()`
+Next,  initialize your map object: `simplemap.Map()`. 
+
+**Note:** By default the map will automatically center and zoom based on points given. For a custom center point, make sure to give `center` a lat/lon value.
+
 #####Parameters:
 
 * `title`  - The title of the HTML map webpage
-* `center` - `list` object containing the latitude and longitude of where the map should be centered
-* `zoom` - Zoom level of the map, defaults to 11 - Optional
+* `center` - `list` containing the lat and lon of of map center. By default is `None`, which results in auto centering. - Optional 
+* `zoom` - Zoom level of the map, defaults to 11  - Optional
 * `markers` - `list` of markers, where a marker is a `list`: optional hovertext, lat and lon - Optional
 * `html_template` - HTML template used to generate a map. Currently the default value of `basic.html` is the only option - Optional
 * `config_file` - JSON file containing the google maps `api_key`, defaults to `config.json` - Optional
