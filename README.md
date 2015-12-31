@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 =========
 
-###Prequsites
+###Prerequisites
 
 Before using this library you will need to obtain a Google Maps Javascript API key. The following link has instructions on getting a key
 * [Get a Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
@@ -83,3 +83,9 @@ example_map.markers = [ ['Example text', 34.4563,-118.1241], [34.6432,-118.1554]
 example_map.write('example.html')
 
 ```
+========
+
+###Result
+The HTML file created should look something like this:
+
+![Example](http://i.imgur.com/wocHdFk.png "Example")
