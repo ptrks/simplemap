@@ -45,6 +45,7 @@ class Map(object):
 
 		except Exception:
 			print "An unknown error occured while attempting to read {0} config file.".format(config_file)
+			sys.exit()
 
 
 	def get_config(self):

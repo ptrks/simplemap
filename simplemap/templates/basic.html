@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{map_title}}</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="simplemap/templates/static/css/basic.css">
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
+	<head>
+		<title>{{map_title}}</title>
+		<meta name="viewport" content="initial-scale=1.0">
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="simplemap/templates/static/css/basic.css">
+	</head>
+	<body>
+		<div id="map"></div>
+		<script>
 
 function initMap() {
 
-  var bounds = new google.maps.LatLngBounds();
-  var center_lat_lon = {lat: {{center[0]}}, lng: {{ center[1] }} };
+	var bounds = new google.maps.LatLngBounds();
+	var center_lat_lon = {lat: {{center[0]}}, lng: {{ center[1] }} };
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center:  center_lat_lon
-  });
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 11,
+		center:  center_lat_lon
+	});
 
-  var markers =  {{ markers|safe }};
+	var markers =  {{ markers|safe }};
 
 
-  for( i = 0; i < markers.length; i++ ) {
-        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-        var title = markers[i][0]
-        bounds.extend(position);
-        marker = new google.maps.Marker({
-            position: position,
-            map: map,
-            title:title
+	for( i = 0; i < markers.length; i++ ) {
+				var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+				var title = markers[i][0]
+				bounds.extend(position);
+				marker = new google.maps.Marker({
+						position: position,
+						map: map,
+						title:title
 
-        });
+				});
 
-      }
+			}
 }
 
 
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&signed_in=true&callback=initMap"
-    async defer></script>
-  </body>
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&signed_in=true&callback=initMap"
+		async defer></script>
+	</body>
 </html>
