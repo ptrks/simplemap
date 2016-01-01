@@ -28,7 +28,7 @@ class Map(object):
 		self.markers = markers
 
 	def set_center(self, center_point):
-		self._center = '{{ lat:{}, lng:{}}}'.format(*center_point) if self._center else 'null'
+		self._center = '{{ lat:{}, lng:{}}}'.format(*center_point) if center_point else 'null'
 
 	def get_center(self):
 		return self._center
