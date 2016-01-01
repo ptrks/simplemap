@@ -10,8 +10,9 @@ This module contains all core functionality related to map generation
 from jinja2 import Environment, FileSystemLoader
 from html_render import SilentUndefined
 import json
-import traceback
+import os
 import sys
+import traceback
 
 TEMPLATES_DIR = FileSystemLoader('simplemap/templates')
 ZOOM_DEFAULT = 11
@@ -77,8 +78,9 @@ class Map(object):
 		try:
 			html = self.template.render(map_title = self.title, center=self.center,
 				zoom=self.zoom, markers=self.markers, api_key=self.config['api_key'])
-			with open(output_path, "w") as output:
-				output.write(html)
+			with open(output_path, "w") as out_file:
+				out_file.write(html)
+			return 'file://' + os.path.join(os.path.abspath(os.curdir), output_path)
 		except IOError:
 			sys.exit("Error, unable to write {}".format(output_path))
 		except Exception:
