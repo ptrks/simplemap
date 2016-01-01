@@ -35,7 +35,7 @@ class Map(object):
 		if center_point is None:
 			self._center = 'null'
 		else:
-			self._center = '{{ lat:{0}, lng:{1}}}'.format(center_point[0], center_point[1])
+			self._center = '{{ lat:{}, lng:{}}}'.format(*center_point)
 
 	def get_center(self):
 		return self._center
