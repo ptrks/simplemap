@@ -10,45 +10,45 @@
 		<div id="map"></div>
 		<script>
 
-		function initMap() {
+function initMap() {
 
-			var bounds = new google.maps.LatLngBounds();
-			var center_lat_lon = null;
+	var bounds = new google.maps.LatLngBounds();
+	var center_lat_lon = null;
 
-			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 11,
-				center:  center_lat_lon
-			});
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 11,
+		center:  center_lat_lon
+	});
 
-			var markers =  [['Example text', 34.4563, -118.1241], ['', 34.6432, -118.1554]];
-			var infowindow = new google.maps.InfoWindow();
+	var markers =  [['Example text', 34.4563, -118.1241], ['', 34.6432, -118.1554]];
+  var infoWindow = new google.maps.InfoWindow();
 
-			for( i = 0; i < markers.length; i++ ) {
-						var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-						var title = markers[i][0]
-						bounds.extend(position);
-						marker = new google.maps.Marker({
-								position: position,
-								map: map,
-								title:title
-						});
+	for( i = 0; i < markers.length; i++ ) {
+				var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+				var title = markers[i][0]
+				bounds.extend(position);
+				marker = new google.maps.Marker({
+						position: position,
+						map: map,
+						title:title
 
-						makeInfoWindowEvent(map, infowindow, "test" + i, marker);
+				});
+				makeInfoWindowEvent(map, infoWindow, "test" + i, marker);
 
-					}
+			}
 
-				map.fitBounds(bounds);
-		}
+		map.fitBounds(bounds);
+}
 
-		function makeInfoWindowEvent(map, infowindow, contentString, marker) {
-			google.maps.event.addListener(marker, 'click', function() {
-				infowindow.setContent(contentString);
-				infowindow.open(map, marker);
-			});
-		}
+function makeInfoWindowEvent(map, infoWindow, contentString, marker) {
+	google.maps.event.addListener(marker, 'click', function() {
+		infoWindow.setContent(contentString);
+		infoWindow.open(map, marker);
+	});
+}
 
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&signed_in=true&callback=initMap"
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-SZqMg_aze4UnL7w-LgnNc1wMFNzg2AU&signed_in=true&callback=initMap"
 		async defer></script>
 	</body>
 </html>

@@ -21,7 +21,7 @@ function initMap() {
 	});
 
 	var markers =  {{ markers|safe }};
-
+  var infoWindow = new google.maps.InfoWindow();
 
 	for( i = 0; i < markers.length; i++ ) {
 				var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
@@ -33,12 +33,19 @@ function initMap() {
 						title:title
 
 				});
+				makeInfoWindowEvent(map, infoWindow, "test" + i, marker);
 
 			}
 
 		{{ 'map.fitBounds(bounds);' if center == 'null' else '' }}
 }
 
+function makeInfoWindowEvent(map, infoWindow, contentString, marker) {
+	google.maps.event.addListener(marker, 'click', function() {
+		infoWindow.setContent(contentString);
+		infoWindow.open(map, marker);
+	});
+}
 
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&signed_in=true&callback=initMap"
