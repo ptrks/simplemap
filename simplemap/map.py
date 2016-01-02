@@ -8,7 +8,7 @@ This module contains all core functionality related to map generation
 """
 
 from jinja2 import Environment, FileSystemLoader
-from html_render import SilentUndefined
+from simplemap.html_render import SilentUndefined
 import json
 import traceback
 import sys
@@ -61,15 +61,15 @@ class Map(object):
 				self._config = json.load(config)
 
 		except IOError:
-			print "Error, unable to open {0} config file.".format(config_file)
+			print("Error, unable to open {0} config file.".format(config_file))
 			sys.exit()
 
 		except KeyError:
-			print "Error, `api_entry` not found in {0} config file.".format(config_file)
+			print("Error, `api_entry` not found in {0} config file.".format(config_file))
 			sys.exit()
 
 		except Exception:
-			print "An unknown error occured while attempting to read {0} config file.".format(config_file)
+			print("An unknown error occured while attempting to read {0} config file.".format(config_file))
 			traceback.print_exc()
 			sys.exit()
 
@@ -106,11 +106,11 @@ class Map(object):
 				output.write(html)
 
 		except IOError:
-			print "Error, unable to write {0}".format(output_path)
+			print("Error, unable to write {0}".format(output_path))
 			sys.exit()
 
 		except Exception:
-			print "Undefined error occured while writing generating {0}".format(output_path)
+			print("Undefined error occured while writing generating {0}".format(output_path))
 			traceback.print_exc()
 			sys.exit()
 
