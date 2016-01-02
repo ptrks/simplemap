@@ -44,7 +44,7 @@ class Map(object):
 	def set_zoom(self, zoom):
 		if zoom is None:
 			if self.center is not None:
-				#Don't allow zoom to be null if customer center is given 
+				#Don't allow zoom to be null if customer center is given
 				self._zoom = ZOOM_DEFAULT
 			else:
 				self._zoom = 'null'
@@ -53,11 +53,11 @@ class Map(object):
 
 	def get_zoom(self):
 		return self._zoom
-	
+
 	def set_config(self, config_file):
 
 		try:
-			with open(config_file, "r") as config:    
+			with open(config_file, "r") as config:
 				self._config = json.load(config)
 
 		except IOError:
@@ -74,14 +74,14 @@ class Map(object):
 			sys.exit()
 
 	def get_config(self):
-		
+
 		return self._config
 
 	def set_markers(self, markers):
 		if markers:
 			for i in markers:
 				if len(i) == 2:
-					i.insert(0, '')
+					i.insert(2, ['', ''])
 
 			self._markers = markers
 
@@ -113,8 +113,3 @@ class Map(object):
 			print("Undefined error occured while writing generating {0}".format(output_path))
 			traceback.print_exc()
 			sys.exit()
-
-
-
-
-

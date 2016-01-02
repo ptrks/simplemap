@@ -63,3 +63,4 @@ docs/_build/
 # PyBuilder
 target/
 config.json
+example.html
