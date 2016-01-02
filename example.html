@@ -20,12 +20,12 @@ function initMap() {
 		center:  center_lat_lon
 	});
 
-	var markers =  [[34.4563, -118.1241, ['Example Text', 'Test']], [34.6432, -118.1554, ['', '']], [34.5124, -118.1111, ['', '']]];
+	var markers =  [['Example text', 34.4563, -118.1241], ['', 34.6432, -118.1554]];
   var infoWindow = new google.maps.InfoWindow();
 
 	for( i = 0; i < markers.length; i++ ) {
-				var position = new google.maps.LatLng(markers[i][0], markers[i][1]);
-				var title = markers[i][2][0];
+				var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+				var title = markers[i][0]
 				bounds.extend(position);
 				marker = new google.maps.Marker({
 						position: position,
@@ -33,9 +33,8 @@ function initMap() {
 						title:title
 
 				});
-				if (markers[i][2][1] != ''){
-					makeInfoWindowEvent(map, infoWindow, markers[i][2][1], marker);
-				}
+				makeInfoWindowEvent(map, infoWindow, "test" + i, marker);
+
 			}
 
 		map.fitBounds(bounds);
