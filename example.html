@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Example Map</title>
+		<meta name="viewport" content="initial-scale=1.0">
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="simplemap/templates/static/css/basic.css">
+	</head>
+	<body>
+		<div id="map"></div>
+		<script>
+
+		function initMap() {
+
+			var bounds = new google.maps.LatLngBounds();
+			var center_lat_lon = null;
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 11,
+				center:  center_lat_lon
+			});
+
+			var markers =  [['Example text', 34.4563, -118.1241], ['', 34.6432, -118.1554]];
+			var infowindow = new google.maps.InfoWindow();
+
+			for( i = 0; i < markers.length; i++ ) {
+						var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+						var title = markers[i][0]
+						bounds.extend(position);
+						marker = new google.maps.Marker({
+								position: position,
+								map: map,
+								title:title
+						});
+
+						makeInfoWindowEvent(map, infowindow, "test" + i, marker);
+
+					}
+
+				map.fitBounds(bounds);
+		}
+
+		function makeInfoWindowEvent(map, infowindow, contentString, marker) {
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.setContent(contentString);
+				infowindow.open(map, marker);
+			});
+		}
+
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&signed_in=true&callback=initMap"
+		async defer></script>
+	</body>
+</html>
