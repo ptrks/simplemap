@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{map_title}}</title>
+		<title>Example Map</title>
 		<meta name="viewport" content="initial-scale=1.0">
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="simplemap/templates/static/css/basic.css">
@@ -13,14 +13,14 @@
 function initMap() {
 
 	var bounds = new google.maps.LatLngBounds();
-	var center_lat_lon = {{center|safe}};
+	var center_lat_lon = null;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: {{ zoom|safe }},
+		zoom: 11,
 		center:  center_lat_lon
 	});
 
-	var markers =  {{ markers|safe }};
+	var markers =  [[34.4563, -118.1241, ['Example Text', 'Test']], [34.6432, -118.1554, ['', '']]];
   var infoWindow = new google.maps.InfoWindow();
 
 	for( i = 0; i < markers.length; i++ ) {
@@ -39,7 +39,7 @@ function initMap() {
 
 			}
 
-		{{ 'map.fitBounds(bounds);' if center == 'null' else '' }}
+		map.fitBounds(bounds);
 }
 
 function makeInfoWindowEvent(map, infoWindow, contentString, marker) {
@@ -50,7 +50,7 @@ function makeInfoWindowEvent(map, infoWindow, contentString, marker) {
 }
 
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&signed_in=true&callback=initMap"
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-SZqMg_aze4UnL7w-LgnNc1wMFNzg2AU&signed_in=true&callback=initMap"
 		async defer></script>
 	</body>
 </html>
