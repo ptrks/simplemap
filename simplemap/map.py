@@ -16,9 +16,10 @@ import traceback
 
 TEMPLATES_DIR = FileSystemLoader('simplemap/templates')
 ZOOM_DEFAULT = 11
+LINES_DEFAULT = []
 
 class Map(object):
-	def __init__(self, title, center=None, zoom=11, markers=None, html_template='basic.html', config_file='config.json'):
+	def __init__(self, title, center=None, zoom=11, markers=None, points=None, html_template='basic.html', config_file='config.json'):
 		self._env = Environment(loader=TEMPLATES_DIR, trim_blocks=True, undefined=SilentUndefined)
 		self.title = title
 		self.template = self._env.get_template(html_template)
@@ -26,6 +27,8 @@ class Map(object):
 		self.zoom = zoom
 		self.config = config_file
 		self.markers = markers
+		# points for lines added in
+		self.points = points
 
 	def set_center(self, center_point):
 		self._center = '{{ lat:{}, lng:{}}}'.format(*center_point) if center_point else 'null'
@@ -69,15 +72,27 @@ class Map(object):
 	def get_markers(self):
 		return self._markers
 
+	# Points setter and getter
+	def set_points(self, points):
+		if points:
+			self._points = points
+		else:
+			self._points = LINES_DEFAULT
+
+	def get_points(self):
+		return self._points
+
 	config = property(get_config, set_config)
 	markers = property(get_markers, set_markers)
 	center = property(get_center, set_center)
 	zoom = property(get_zoom, set_zoom)
+	# Declare the names of the setter and getters
+	points = property(get_points, set_points)
 
 	def write(self, output_path):
 		try:
 			html = self.template.render(map_title = self.title, center=self.center,
-				zoom=self.zoom, markers=self.markers, api_key=self.config['api_key'])
+				zoom=self.zoom, markers=self.markers, points=self.points, api_key=self.config['api_key'])
 			with open(output_path, "w") as out_file:
 				out_file.write(html)
 			return 'file://' + os.path.join(os.path.abspath(os.curdir), output_path)

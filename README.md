@@ -19,7 +19,7 @@ Installation is very straightforward. Simply clone the repository and install th
 ```sh
 git clone https://github.com/patrick--/simplemap/
 cd simplemap
-pip install -r requirements.txt
+sudo ./INSTALL.sh
 ```
 
 =========

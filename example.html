@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{map_title}}</title>
+		<title>Example Map</title>
 		<meta name="viewport" content="initial-scale=1.0">
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="simplemap/templates/static/css/basic.css">
@@ -13,10 +13,10 @@
 function initMap() {
 
 	var bounds = new google.maps.LatLngBounds();
-	var center_lat_lon = {{center|safe}};
+	var center_lat_lon = null;
 
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: {{ zoom|safe }},
+		zoom: 11,
 		center:  center_lat_lon
 	});
 
@@ -26,7 +26,7 @@ function initMap() {
 	Lines are drawn in the order they come in.
 	Meaning lines will be drawn from point[0] to point[1] to point[2] etc.
 	*/ 
-	var points = {{ points|safe }};
+	var points = [{'lat': 34.4563, 'lng': -118.1241}, {'lat': 34.5235, 'lng': -118.1245}, {'lat': 34.6432, 'lng': -118.1554}];
 	// flightPath takes the points and draws lines between them all.
 	var flightPath = new google.maps.Polyline({
           path: points,
@@ -37,7 +37,7 @@ function initMap() {
         });
 	flightPath.setMap(map);
 
-	var markers =  {{ markers|safe }};
+	var markers =  [['', 34.4563, -118.1241], ['', 34.5235, -118.1245], ['', 34.6432, -118.1554]];
 
 
 	for( i = 0; i < markers.length; i++ ) {
@@ -53,12 +53,12 @@ function initMap() {
 
 			}
 
-		{{ 'map.fitBounds(bounds);' if center == 'null' else '' }}
+		map.fitBounds(bounds);
 }
 
 
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&signed_in=true&callback=initMap"
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC74nEdTcDcoQhjLDTaa5JSU1ccmNqsA3E&signed_in=true&callback=initMap"
 		async defer></script>
 	</body>
 </html>
