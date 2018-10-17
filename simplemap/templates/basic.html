@@ -20,6 +20,23 @@ function initMap() {
 		center:  center_lat_lon
 	});
 
+	/*
+	points are close to markers but formatted differently as the flightPath var needs it like so. 
+	They should look like [ {'lat':54325, 'lng': 5432}, {'lat':6543, 'lng': 25543}, ....]. 
+	Lines are drawn in the order they come in.
+	Meaning lines will be drawn from point[0] to point[1] to point[2] etc.
+	*/ 
+	var points = {{ points|safe }};
+	// flightPath takes the points and draws lines between them all.
+	var flightPath = new google.maps.Polyline({
+          path: points,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+	flightPath.setMap(map);
+
 	var markers =  {{ markers|safe }};
 
 
